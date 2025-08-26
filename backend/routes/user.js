@@ -80,12 +80,8 @@ router.post('/login',async(req,res)=>{
             process.env.JWT_SECRET,
             {expiresIn:"24h"}
         )
-        res.cookie("token",token,{
-            httpOnly:true,
-            secure:process.env.NODE_ENV==='production',
-            sameSite:'strict',
-            maxAge:24*60*60*1000
-        })
+        
+        
 
         const userWithoutPassword = user.toObject()
         delete userWithoutPassword.password
@@ -103,5 +99,66 @@ router.post('/login',async(req,res)=>{
 
 })
 
+router.post('/logout',async(req,res)=>{
+    try {
+        const token = req.cookies.token
+        
+        if(!token){
+            return res.status(400).json({message:'이미 로그아웃된 상태입니다'})
+        }
+        try {
+            const decoded = jwt.verify(token,process.env.JWT_SECRET) //유효성 검증
+            const user = await User.findById(decoded.userId)
+            
+            if(user){
+                user.isLoggedIn=false
+                await user.save()
+            }
+        } catch (error) {
+            console.log("토큰 검증 오류",error)
+        }
+        
+        res.clearCookie("token",token,{
+            httpOnly:true,
+            secure:process.env.NODE_ENV==='production',
+            sameSite:'strict',
+        })
+    } catch (error) {
+        console.log("로그아웃 중 서버오류",error)
+    }
+})
+
+router.get('/users',async(req,res)=>{
+    try {
+        
+        const users= await User.find().sort({createdAt:-1})
+        
+        return res.status(201).json({message:"전체 유저 가져오기 성공"})
+        
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({message:"서버오류"})
+    }
+})
+router.delete('/delete/:userId',async(req,res)=>{
+    try {
+        const user = await User.findByIdAndDelete(req.params.userId)
+
+        if(!user){
+            return res.status(404).json({message:'사용자를 찾을 수 없습니다.'})
+        }
+        
+        return res.status(201).json({message:'사용자 삭제 성공.'})
+
+
+        res.clearCookie("token",token,{
+            httpOnly:true,
+            secure:process.env.NODE_ENV==='production',
+            sameSite:'strict',
+        })
+    } catch (error) {
+        console.log("로그아웃 중 서버오류",error)
+    }
+})
 
 module.exports=router
