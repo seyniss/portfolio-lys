@@ -1,0 +1,16 @@
+section {
+    min-height: 100vh;
+
+    &:nth-child(odd) {
+        background-color: rgb(236, 236, 236);
+    }
+}
+
+header,section {
+    .inner {
+        position: relative;
+        max-width: 160rem;
+        height: 100%;
+        margin:auto;
+    }
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { api } from "../lib/api"
 import { useNavigate } from "react-router-dom"
+import "./styles/AdminLogin.scss"
 
 const AdminLogin = () => {
 
@@ -21,31 +22,31 @@ const AdminLogin = () => {
     })
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit=async(e)=>{
     e.preventDefault()
 
     try {
-      const response = await api.post('/api/auth/login',
-        formData, {
-        withCredentials: true
-      }
+      const response =await api.post('/api/auth/login',
+        formData,{
+          withCredentials:true
+        }     
       )
-      if (response.data.user) {
+      if(response.data.user){
         nav("/admin/post")
       }
     } catch (error) {
-      const errorMsg = error.response.data.message || '로그인 실패'
+      const errorMsg = error.response.data.message ||'로그인 실패'
 
       setError({
-        message: errorMsg
+        message:errorMsg
       })
     }
 
   }
 
   return (
-    <div>
-      <div className='login-header'>
+    <div className='login-container'>
+      <div className='login-header '>
         <h3>관리자 로그인</h3>
         <p>관리자 전용 페이지 입니다.</p>
       </div>
