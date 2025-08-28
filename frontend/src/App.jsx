@@ -12,18 +12,25 @@ import "./styles/common.scss"
 
 
 import { Route, Routes } from 'react-router-dom'
+import { ThemeProvider } from './context/ThemeContext'
 
 function App() {
 
 
 
+
   return (
-    <Routes>
-      <Route path='/' element={<Home/>} />
-      <Route path='/admin/login' element={<AdminLogin/>} />
-      <Route path='/admin/post' element={<AdminPost/>} />
-      <Route path='*' element={<Notfound/>} />
-    </Routes>
+    <ThemeProvider>
+
+      <Routes>
+
+
+        <Route path='/' element={<Home />} />
+        <Route path='/admin/login' element={<AdminLogin />} />
+        <Route path='/admin/post' element={<AdminPost />} />
+        <Route path='*' element={<Notfound />} />
+      </Routes>
+    </ThemeProvider>
   )
 }
 

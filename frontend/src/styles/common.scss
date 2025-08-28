@@ -1,16 +1,68 @@
 section {
+    position: relative;
+    z-index: 0;
     min-height: 100vh;
-
-    &:nth-child(odd) {
-        background-color: rgb(236, 236, 236);
-    }
+    background-color: var(--bg);
+    
 }
 
-header,section {
+header ,section{
     .inner {
         position: relative;
         max-width: 160rem;
         height: 100%;
-        margin:auto;
+        margin: auto;
+
+        .btn {
+            background-color: var(--primary);
+            color: var(--bg);
+            border: 0;
+            padding: .6rem 1rem;
+            cursor: pointer;
+            border-radius: .5rem;
+            text-transform: uppercase;
+        }
+        h1.tit {
+            font-size: clamp(6rem ,8vw,16rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: .9;
+            letter-spacing: -.05rem;
+            span {
+                display: block;
+            }
+            span.star-spin{
+                display: inline-block;
+            }
+        }
+        p.txt{
+            // 글꼴 정의
+            font-size: clamp(2rem,2vw,2.8rem);
+            color: var(--gray600);
+        }
     }
+}
+
+span.star-spin{
+    // keyframes 여기에 적용
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 1em;
+    height: 1em;
+    // transform-origin: 50% 50%;
+    animation: rotate 3s infinite alternate;
+    i.star {
+        font-style: normal;
+        color: var(--primary);
+    }
+    // ✱
+
+}
+.arrow{
+    font-size: 3rem;
+}
+@keyframes rotate {
+    from{transform: rotate(0deg);}
+    to{transform: rotate(360deg);}
 }
