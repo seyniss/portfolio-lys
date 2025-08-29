@@ -1,0 +1,42 @@
+.aboutme-inner {
+    h1.tit {
+        .star-spin {
+            left: -10rem;
+            top: -10rem;
+        }
+    }
+
+    .about-container {
+        display: flex;
+        gap: 2rem;
+        width: 100%;
+        margin-top: 5.3rem;
+
+        .in-wrap {
+            flex: 1;
+        }
+
+        .lst {
+            >li {
+                line-height: 2;
+                padding: .5rem 1rem 0;
+                font-size: 1.4rem;
+            }
+
+            >strong {
+                display: inline-block;
+                padding: 0 3rem 0 0;
+            }
+
+            &:nth0child(even) {
+                background-color: var(--gray100);
+            }
+
+            &:hover {
+                background-color: var(--primary);
+                color: var(--bg);
+            }
+
+        }
+    }
+}

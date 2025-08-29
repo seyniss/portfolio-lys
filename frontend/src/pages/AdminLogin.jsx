@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { api } from "../lib/api"
 import { useNavigate } from "react-router-dom"
+import "./styles/AdminLogin.scss"
 
 const AdminLogin = () => {
 

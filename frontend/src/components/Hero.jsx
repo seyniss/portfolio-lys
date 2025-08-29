@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Hero.scss"
+import "./styles/Hero.scss"
 const Hero = () => {
   return (
     <div className='inner hero-inner'>
