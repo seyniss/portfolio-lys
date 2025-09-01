@@ -1,19 +1,23 @@
-ul.lst>li{
-    a.t-wrap{
-        >h4.list-lst{
-
-        }
-        >p.txt{
-
-        }
-        >.hash-wrap{
-            >span.hash{
-                
+.inner.work-inner{
+    .work-lst{
+        display:flex;
+        flex-direction: column;
+        gap:5.4rem;
+        >li{
+            display: flex;
+            .lst-img-wrap{
+                width:48rem;
+                height:36rem;
+                display:block;
+                overflow: hidden;
+                .bg{
+                    width:100%;
+                    height: 100%;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
             }
         }
-    }
-    a.img-wrap{
-        // background-image: url();
-
     }
 }

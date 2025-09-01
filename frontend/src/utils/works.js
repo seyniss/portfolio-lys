@@ -41,7 +41,7 @@ export const works = [
     description:
       "관리자에서 Works 항목을 생성/수정/삭제하는 SPA. 목데이터로부터 CRUD UX 설계.",
     tags: ["REACT", "CRUD", "ADMIN", "FORM", "VALIDATION"],
-    thumbnail: img("p-2.png"),
+    thumbnail: img("p-3.png"),
 
     period: "2025.05",
     role: "Full-stack(미니)",
