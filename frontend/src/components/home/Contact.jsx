@@ -1,7 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./styles/Contact.scss"
 import contact from '../../utils/contact'
+import { api } from '../../lib/api'
 const Contact = () => {
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+    status: "in progress"
+  })
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await api.post("/api/contact", formData)
+
+      if (response.status == 201) {
+        alert("문의 접수 완료")
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+          status: "in progress"
+        })
+      }
+    } catch (error) {
+      console.log("오류발생",error)
+      Swal.fire("문의 접수 오류",error)
+    }
+  }
+
   return (
     <div className='inner contact-inner'>
       <h1 className="tit">
@@ -16,25 +54,47 @@ const Contact = () => {
             <li>
               <label htmlFor="name" className='label'>이름</label>
               <div className="field">
-                <input type="text" placeholder='홍길동' />
+                <input
+                  type="text"
+                  id='name'
+                  name='name'
+                  value={formData.name}
+                  placeholder='홍길동'
+                  onChange={handleChange}
+                />
               </div>
             </li>
             <li>
               <label htmlFor="email" className='label'>이메일</label>
               <div className="field">
-                <input type="email" placeholder='example@naver.com' />
+                <input type="email"
+                  id='email'
+                  placeholder='example@naver.com'
+                  name='email'
+                  value={formData.email}
+                  onChange={handleChange}
+                />
               </div>
             </li>
             <li>
               <label htmlFor="phone" className='label'>연락처</label>
               <div className="field">
-                <input type="tel" placeholder='010-1234-5678' />
+                <input type="tel"
+                  id='phone'
+                  placeholder='010-1234-5678'
+                  name='phone'
+                  value={formData.phone}
+                  onChange={handleChange}
+                />
               </div>
             </li>
             <li>
               <label htmlFor="message" className='label'>문의 내용</label>
               <div className="field">
-                <textarea name="message" id="message" rows={7} placeholder='문의 하실 내용을 자세히 적어주세요' required></textarea>
+                <textarea name="message" id="message" rows={7}
+                  value={formData.message}
+                  placeholder='문의 하실 내용을 자세히 적어주세요' required
+                  onChange={handleChange}></textarea>
               </div>
             </li>
             <li>
