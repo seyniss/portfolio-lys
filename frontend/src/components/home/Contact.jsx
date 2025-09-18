@@ -3,10 +3,6 @@ import "./styles/Contact.scss"
 import contact from '../../utils/contact'
 import { api } from '../../lib/api'
 const Contact = () => {
-<<<<<<< HEAD
-
-=======
->>>>>>> 4bd306978041c1278769c6f6c63db1730bc3f813
   const [formData, setFormData] = useState({
     name: "",
     email: "",
