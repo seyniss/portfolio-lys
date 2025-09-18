@@ -27,14 +27,9 @@ const Contact = () => {
     try {
       const response = await api.post("/api/contact", formData)
 
-<<<<<<< HEAD
-      if (response.status == 201) {
-        alert("문의 접수 완료")
-=======
 
       if (response.status == 201) {
         alert("문의가 성공적으로 접수!")
->>>>>>> 4bd306978041c1278769c6f6c63db1730bc3f813
         setFormData({
           name: "",
           email: "",
@@ -43,16 +38,10 @@ const Contact = () => {
           status: "in progress"
         })
       }
-<<<<<<< HEAD
-    } catch (error) {
-      console.log("오류발생",error)
-      Swal.fire("문의 접수 오류",error)
-=======
 
     } catch (error) {
-      console.log("에러 발생",error)
+      console.log("에러 발생", error)
       alert("문의 접수 중 오류가 발생했습니다. 잠시후 다시 시도해 주세요")
->>>>>>> 4bd306978041c1278769c6f6c63db1730bc3f813
     }
   }
 
@@ -75,29 +64,14 @@ const Contact = () => {
                   id='name'
                   name='name'
                   value={formData.name}
-<<<<<<< HEAD
-                  placeholder='홍길동'
-                  onChange={handleChange}
-                />
-=======
                   onChange={handleChange}
                   required
                   placeholder='홍길동' />
->>>>>>> 4bd306978041c1278769c6f6c63db1730bc3f813
               </div>
             </li>
             <li>
               <label htmlFor="email" className='label'>이메일</label>
               <div className="field">
-<<<<<<< HEAD
-                <input type="email"
-                  id='email'
-                  placeholder='example@naver.com'
-                  name='email'
-                  value={formData.email}
-                  onChange={handleChange}
-                />
-=======
                 <input
                   id='email'
                   type="email"
@@ -106,21 +80,11 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder='example@naver.com' />
->>>>>>> 4bd306978041c1278769c6f6c63db1730bc3f813
               </div>
             </li>
             <li>
               <label htmlFor="phone" className='label'>연락처</label>
               <div className="field">
-<<<<<<< HEAD
-                <input type="tel"
-                  id='phone'
-                  placeholder='010-1234-5678'
-                  name='phone'
-                  value={formData.phone}
-                  onChange={handleChange}
-                />
-=======
                 <input
                   id='phone'
                   name='phone'
@@ -128,18 +92,11 @@ const Contact = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   type="tel" placeholder='010-1234-5678' />
->>>>>>> 4bd306978041c1278769c6f6c63db1730bc3f813
               </div>
             </li>
             <li>
               <label htmlFor="message" className='label'>문의 내용</label>
               <div className="field">
-<<<<<<< HEAD
-                <textarea name="message" id="message" rows={7}
-                  value={formData.message}
-                  placeholder='문의 하실 내용을 자세히 적어주세요' required
-                  onChange={handleChange}></textarea>
-=======
                 <textarea
                   value={formData.message}
                   onChange={handleChange}
@@ -147,7 +104,6 @@ const Contact = () => {
                   id="message"
                   rows={7}
                   placeholder='문의 하실 내용을 자세히 적어주세요' required></textarea>
->>>>>>> 4bd306978041c1278769c6f6c63db1730bc3f813
               </div>
             </li>
             <li>
