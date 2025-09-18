@@ -34,10 +34,17 @@ const AdminContact = () => {
       setContacts((prev) =>
         prev.map((c) => (c._id === contactId ? { ...c, status: newStatus } : c))
       )
+<<<<<<< HEAD
       Swal.fire("수정완료", "상태가 성공저그로 수정되었습니다", "successs")
     } catch (error) {
       console.log("수정실패", error)
       Swal.fire("오류발생", "수정 중 문제가 발생했습니다", "error")
+=======
+      Swal.fire("수정완료", "상태가 성공적으로 수정되었습니다.", "success")
+    } catch (error) {
+      console.log("수정실패", error)
+      Swal.fire("오류발생", "수정중 문제가 발생했습니다.", "error")
+>>>>>>> 4bd306978041c1278769c6f6c63db1730bc3f813
     }
   }
 
@@ -52,12 +59,17 @@ const AdminContact = () => {
       },
       inputValue: contact.status,
       confirmButtonText: "적용하기",
+<<<<<<< HEAD
       canelButtonText: "취소히기",
+=======
+      cancelButtonText: "취소",
+>>>>>>> 4bd306978041c1278769c6f6c63db1730bc3f813
       showCancelButton: true
     })
     if (isConfirmed && newStatus) {
       handleStatusUpdate(contact._id, newStatus)
     }
+<<<<<<< HEAD
   }
 
   const handleDelete=async(id)=>{
@@ -86,12 +98,44 @@ const AdminContact = () => {
     }
   }
 
+=======
+
+  }
+
+  const handleDelete = async (id) => {
+    const result = await Swal.fire({
+      title: "삭제하시겠습니까?",
+      text: "이 작업은 되돌릴 수 없습니다.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "삭제",
+      cancelButtonText: "취소",
+    })
+
+    if (!result.isConfirmed) return;
+
+    try {
+      await api.delete(`/api/contact/${id}`, {
+        withCredentials: true
+      })
+
+      setContacts((prev) => prev.filter((c) => c._id !== id))
+      Swal.fire("삭제완료", "문의가 성공적으로 삭제 되었습니다.", "success")
+    } catch (error) {
+      console.log("삭제 실패", error)
+      Swal.fire("오류발생", "삭제 중 문제가 발생했습니다.", "error")
+    }
+
+  }
+>>>>>>> 4bd306978041c1278769c6f6c63db1730bc3f813
   return (
     <div className='inner admin-contact'>
       <h2>문의글 관리</h2>
       <div className="contact-wrapper">
         <ul className="contact-list">
-          {contacts.map((c, i) => (
+          {contacts.map((c) => (
 
             <li key={c._id}>
               <p>
@@ -131,7 +175,11 @@ const AdminContact = () => {
                   onClick={() => showStatusChangeModal(c)}
                 >상태변경</button>
                 <button
+<<<<<<< HEAD
                 onClick={()=>handleDelete(c._id)}
+=======
+                  onClick={() => handleDelete(c._id)}
+>>>>>>> 4bd306978041c1278769c6f6c63db1730bc3f813
                 >삭제</button>
               </div>
             </li>
